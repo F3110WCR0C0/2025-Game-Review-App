@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('statistics_id');
-            $table->unsignedBigInteger('review_id');
-            $table->unsignedBigInteger('genre_id');
             $table->string('name');
             $table->date('release_date');
             $table->unsignedBigInteger('age_rating');

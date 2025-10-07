@@ -24,9 +24,9 @@
     </style>
 </head>
 <body>
-    <h1>About Me</h1>
-    <p>Hello! I'm Jane Doe, a passionate web developer with a love for creating elegant and efficient applications.</p>
-    <p>I specialize in Laravel, PHP, and JavaScript, and enjoy working on projects that make a difference.</p>
-    <p>In my free time, I like hiking, reading books, and exploring new technologies.</p>
+    <h1>Main Page</h1>
+    <p>type: /login</p>
+    <p>type: /register</p>
+
 </body>
 </html>

@@ -2,13 +2,35 @@
 <html>
 <head><title>Games</title></head>
 <body>
-    <h1>All Games</h1>
-    <ul>
-        @foreach ( $games as game )
-            <li>
-                {{$game->statistics_id}} - {{$game->review_id}} - {{$game->genre_id}} - {{$game->name}} - {{$game->release_date}} - {{$game->age_rating}} - {{$game->price}} - {{$game->discount}}
-            </li>
-        @endforeach
-    </ul>
+    <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('List of Games') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach($games as $game)
+                            <a href="{{ route('games.show', $game) }}">
+                                <x-game-card 
+                                    :name="$game->name" 
+                                    :release_date="$game->release_date" 
+                                    :image="$game->image" 
+                                    :age_rating="$game->age_rating"
+                                    :price="$game->price"
+                                    :discount="$game->discount"
+                                />
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
 </body>
 </html>

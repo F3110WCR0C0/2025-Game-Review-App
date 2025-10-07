@@ -21,7 +21,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        return view('games.create');
     }
 
     /**
@@ -29,15 +29,37 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=> 'required',
+            'release_date'=> 'required|date',
+            'age_rating'=> 'required|integer',
+            'price'=> 'required|decimal',
+            'discount'=> 'required|decimal',
+            'image'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $imageName = time().'.'.$request->image->extentions();
+            $request->image->move(public_path('images/games'), imageName);
+        }
+        
+        Game::create([
+            'name'=> $request->name,
+            'release_date'=> $request->release_date,
+            'age_rating'=> $request->age_rating,
+            'price'=> $request->price,
+            'discount'=> $request->discount,
+            'image'=> $imageName
+        ]);  
+
+        return to_route('games.index')->with('success', 'Game created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+  
     public function show(Game $game)
     {
-        //
+        return view('games.show')->with('game',$game);
     }
 
     /**
