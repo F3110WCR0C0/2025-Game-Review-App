@@ -15,7 +15,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
                         <x-game-form
-                            :action-"route('games.store')"
+                            :action="route('games.store')"
                             :method="'POST'"
                         />
                     </div>

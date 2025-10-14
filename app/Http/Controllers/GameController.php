@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
+// Might not need to go here
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class GameController extends Controller
         if ($request->hasFile('image')) {
 
             $imageName = time().'.'.$request->image->extentions();
-            $request->image->move(public_path('images/games'), imageName);
+            $request->image->move(public_path('images/games'), $imageName);
         }
         
         Game::create([
@@ -67,7 +68,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        return view('games.edit', compact('game'));
     }
 
     /**
@@ -75,7 +76,7 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        return view('games.update');
     }
 
     /**
@@ -83,6 +84,6 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        //
+        return view('games.destroy');
     }
 }
