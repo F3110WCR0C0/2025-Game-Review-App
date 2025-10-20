@@ -15,7 +15,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
                             <a href="{{ route('games.show', $game) }}">
-                                <x-game-card 
+                                <x-game-details 
                                     :name="$game->name" 
                                     :release_date="$game->release_date" 
                                     :image="$game->image" 

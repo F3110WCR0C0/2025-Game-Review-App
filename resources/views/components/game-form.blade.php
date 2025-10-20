@@ -14,7 +14,7 @@
             type="text"
             name="name"
             id="name"
-            value="{{ old('name', $game->name ?? ' ') }}"
+            value="{{ old('name', $game->name ?? 'Title') }}"
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
         />
@@ -59,7 +59,7 @@
             type="text"
             name="age_rating"
             id="age_rating"
-            value="{{ old('age_rating', $game->age_rating ?? ' ') }}"
+            value="{{ old('age_rating', $game->age_rating ?? '18') }}"
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
         />
@@ -76,7 +76,7 @@
             type="text"
             name="price"
             id="price"
-            value="{{ old('price', $game->price ?? ' ') }}"
+            value="{{ old('price', $game->price ?? '0.00') }}"
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
         />
@@ -92,7 +92,7 @@
             type="text"
             name="discount"
             id="discount"
-            value="{{ old('discount', $game->discount ?? ' ') }}"
+            value="{{ old('discount', $game->discount ?? '0.00') }}"
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
         />
