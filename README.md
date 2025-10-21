@@ -1,61 +1,28 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+This is my Advanced Web Development Project and i will go through everything i did between each day.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Day-1:
 
-## About Laravel
+I initially made a ERD with foreign keys and 5 tables i then gathered the default Laravel tamplate then installed tailwind and breeze, I the edited my game controller, migrations and my seeder to have (statistics_id, review_id, genre_id id, name, release_date, price, discounts) i also ammended the welcome page to have information about who i am and got the login/register pages working.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Day-2:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+I changed me ERD to have 1 table since for CA1 it would be less complicated and we should tackle this in CA2. I also changed my game controller, model, migrations and seeder to now have (image). I made an image folder and i made a create, edit, index and show page. I also eddited my web.php to have routes to other pages and forms and allow access to CRUD.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Day-3:
 
-## Learning Laravel
+I finally got the show page to work. I added another game. Ammended the welcome page to have links to the login/register. I added links on the navigatiion bar so people can go to the view all game page. I also deleted some files that werent doing anything to clean the folder i refreshed my database added store function in game controller i also added create, show, alert success so when u edit or delete it gives a success txt, i also deleted (statistics_id, review_id, genre_id) as they were not needed.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Day-4
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+I had some issues with the layout of the show page as there was huge empty space turns out it was due to a link error so i fixed that then i made it so the images were being displayed properly. Made a mistake in gameController with the edit and destory function. In web.php i added more routes to allow for full CRUD functionality added a creat a game link into the navigation bar with a mostly working create form made buttons for delete and edit in the show all page that caused the previous problem.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Day-5:
 
-## Laravel Sponsors
+Fixed an issue where discounted prices were given in decimal(10,10) instead of decimal(10,2) fixed an issue where images were not getting accepted in forms. Messed around with welcome page again. Made a Game details section. finally got Create, Store, Edit, Delete all working added timestamps into the migration, seeder etc.. to allow delete and other to work.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Day-6:
 
-### Premium Partners
+Simply made a way to get back to the welcome page and did some testing to ensure that no errors were coming and that the forms diddint accept any incorrect data.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Day-7:
+I fixed issues that i had with images not appearing in edit form. Added a non-functining search-bar, edited the welcome page more to show my experience. Fixed Github issues and readme also made the success message after editing display the correct message sent project to professor.

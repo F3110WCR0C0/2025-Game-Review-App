@@ -2,9 +2,12 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('List of Games') }}
+            <x-nav-link>
+                <input type="text" placeholder="searchbar">
+            </x-nav-link>
         </h2>
         <x-alert-success>
-            {[session('success')]}
+            successful!
         </x-alert-success>
     </x-slot>
 

@@ -25,6 +25,9 @@
 
     <div class="mb-4">
         <label for="image" class="block text-sm font-medium text-gray-700">Game Cover Image</label>
+        @isset($game->image)
+            <img src="{{ asset('images/games/' . $game->image) }}" alt="Game cover" class="w-100 h-32 object-cover">
+        @endisset
         <input
             type="file"
             name="image"
@@ -99,16 +102,13 @@
         @error('discount')
             <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
+
     </div>
 
 
 
 {{-- /////////////////////////////////////////////////////////////// --}}
-    @isset($game->image)
-        <div class="mb-4">
-            <img src="{{ asset($game->image) }}" alt="Game cover" class="w-24 h-32 object-cover">
-        </div>
-    @endisset
+
 
     <div>
         <x-primary-button>
