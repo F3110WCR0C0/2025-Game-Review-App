@@ -21,6 +21,7 @@ class GameForm extends Component
      */
     public function render(): View|Closure|string
     {
+        // brings you to the games-form components
         return view('components.game-form');
     }
 }

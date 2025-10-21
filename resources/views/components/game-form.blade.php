@@ -105,8 +105,6 @@
 
     </div>
 
-
-
 {{-- /////////////////////////////////////////////////////////////// --}}
 
 
@@ -118,3 +116,4 @@
 </form>
 
 
+{{-- this is the file that holds the form it ensure that the data being entered is the correct variable type and it displays the form page when pressing edit and create --}}

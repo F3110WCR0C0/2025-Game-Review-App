@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('games', function (Blueprint $table) {
+            // this is what brings the table to phpmyadmin it creates the table there
             $table->id();
             $table->string('name');
             $table->date('release_date');

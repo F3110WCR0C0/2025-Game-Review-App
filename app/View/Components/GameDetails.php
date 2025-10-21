@@ -21,6 +21,7 @@ class GameDetails extends Component
      */
     public function render(): View|Closure|string
     {
+        // gets the game-details components
         return view('components.game-details');
     }
 }

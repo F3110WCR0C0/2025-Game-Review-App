@@ -11,3 +11,5 @@
     </p>
     <p class="font-bold text-lg">Discounted: ${{ number_format($price * (1 - $discount), 2) }}</p>
 </div>
+
+{{-- this is what you see when you click on a game in the view all games section with extra details and all the data being drawn from the data base thanks to the migration making the table and columns and the seeder filling in the data needed --}}

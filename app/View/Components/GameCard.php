@@ -21,6 +21,7 @@ class GameCard extends Component
      */
     public function render(): View|Closure|string
     {
+        // gets the game-card component
         return view('components.game-card');
     }
 }

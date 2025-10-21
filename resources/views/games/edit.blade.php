@@ -21,3 +21,6 @@
         </div>
     </div>
 </x-app-layout>
+
+
+{{-- this is the page people are brought to edit a game with the x-game-form having a post method to store data --}}

@@ -25,4 +25,9 @@ Day-6:
 Simply made a way to get back to the welcome page and did some testing to ensure that no errors were coming and that the forms diddint accept any incorrect data.
 
 Day-7:
+
 I fixed issues that i had with images not appearing in edit form. Added a non-functining search-bar, edited the welcome page more to show my experience. Fixed Github issues and readme also made the success message after editing display the correct message sent project to professor.
+
+Day-8:
+
+Went Through all code and added comments deminstrating my understanding

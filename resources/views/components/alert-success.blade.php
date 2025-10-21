@@ -3,3 +3,5 @@
         {{ $slot }}
     </div>
 @endif
+
+{{-- this makes it so if the delete and edit works and is a success it displays a success message --}}

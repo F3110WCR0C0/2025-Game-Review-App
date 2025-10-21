@@ -39,28 +39,34 @@ class GameController extends Controller
             'image'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
+        // Ensureing the file has an image
         if ($request->hasFile('image')) {
 
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images/games'), $imageName);
         }
         Game::create([
+            // creating a database with these cplumns
             'name'=> $request->name,
             'release_date'=> $request->release_date,
             'age_rating'=> $request->age_rating,
             'price'=> $request->price,
             'discount'=> $request->discount,
             'image'=> $imageName,
+            // the now() sets the data to the current time
             'updated_at'=> now(),
             'created_at'=> now()
         ]);  
 
+
+        // After storing the data the web application sends you to the game index
         return to_route('games.index')->with('success', 'Game created successfully!');
     }
 
   
     public function show(Game $game)
     {
+        // brings you to game show
         return view('games.show')->with('game',$game);
     }
 
@@ -69,6 +75,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
+        // brings you to games edit
         return view('games.edit', compact('game'));
     }
 
@@ -78,6 +85,7 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
+        // validates all data given when updating a game
         $request->validate([
             'name'=> 'required',
             'release_date'=> 'required|date',
@@ -89,6 +97,7 @@ class GameController extends Controller
 
  
         // Handle image upload if provided
+        // images are handled differently to the other fields so this chunk of code ensures its all okay
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images/games'), $imageName);
@@ -105,6 +114,7 @@ class GameController extends Controller
         // Save changes
         $game->save();
  
+        // sends the user to the games index with an alert success
         return redirect()
             ->route('games.index')
             ->with('success', 'Game updated successfully!');
@@ -120,8 +130,10 @@ class GameController extends Controller
             unlink(public_path('images/games/' . $game->image));
         }
        
+        // deletes a game
         $game->delete();
  
+        // sends user to the games index page
         return redirect()
             ->route('games.index')
             ->with('success', 'Game deleted successfully!');

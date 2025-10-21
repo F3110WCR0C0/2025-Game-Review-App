@@ -21,6 +21,8 @@ class GameSeeder extends Seeder{
         $currentTimestamp = Carbon::now();
 
         Game::insert([
+
+            // this is inserting various data into the seeder to then populate the database
             [
                 'name'=> 'Monster Hunter: World',
                 'release_date'=> '2018-08-08',
