@@ -25,6 +25,7 @@ class GameController extends Controller
         if (auth()->user()->role !== 'admin'){
             return redirect()->route('games.index')->with('error','Access denied.');
         }
+        
         return view('games.create');
     }
 
