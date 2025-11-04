@@ -70,8 +70,10 @@ class GameController extends Controller
   
     public function show(Game $game)
     {
+        // Might need to change location to FeedbackController
+        $game->load('feedbacks.user');
         // brings you to game show
-        return view('games.show')->with('game',$game);
+        return view('games.show', compact('game'));
     }
 
     /**
@@ -113,7 +115,7 @@ class GameController extends Controller
         $game->release_date = $request->release_date;
         $game->age_rating = $request->age_rating;
         $game->price = $request->price;
-        $game->discount - $request->discount;
+        $game->discount = $request->discount;
  
         // Save changes
         $game->save();

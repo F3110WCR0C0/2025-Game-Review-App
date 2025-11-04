@@ -28,6 +28,7 @@
                                         :discount="$game->discount"
                                     />
                                 </a>
+                                    @if(auth()->user()->role === 'admin')
                                         <div class="mt-4 flex space-x-2">
                                             <a href="{{ route('games.edit', $game) }}" class="text-grey-600 bg-orange-300 hover:bg-orange-700 font-bold py-2 px-4 rounded">
                                                 Edit
@@ -40,6 +41,7 @@
                                                 </button>
                                             </form>
                                         </div>
+                                    @endif
                             </div>
                         @endforeach       
                     </div>

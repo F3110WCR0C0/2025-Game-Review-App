@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\GameController;
+use App\Models\Feedback;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,7 +31,8 @@ Route::get('/games/{game}/edit', [GameController::class, 'edit'])->name('games.e
 Route::put('/games/{game}', [GameController::class, 'update'])->name('games.update');
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');
 
-
+route::resource('feedbacks', FeedbackController::class);
+route::post('games/{game}/feedbacks', [FeedbackController::class, 'store'])->name('feedbacks.store');
 
 
 
