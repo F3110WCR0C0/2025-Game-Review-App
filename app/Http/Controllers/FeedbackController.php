@@ -8,25 +8,16 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request, Game $game)
     {
         $request->validate([
@@ -34,46 +25,38 @@ class FeedbackController extends Controller
             'feedback' => 'nullable|string|max:1000',
         ]);
 
-        // Create new feedback record linked to game and user
         Feedback::create([
-            'game_id' => $game->id ?? 1,
-            'user_id' => auth()->id(),  // assuming user is authenticated
+            'game_id' => $game->id,
+            'user_id' => auth()->id(),
             'rating' => $request->rating,
             'name' => auth()->user()->name,
             'feedback' => $request->feedback,
             'hours_played' => $request->hours_played ?? 0,
         ]);
 
-        return redirect()->route('games.show', $game)->with('success', 'Feedback submitted!');
+        return redirect()->route('games.index', $game)->with('success', 'Feedback submitted!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Feedback $feedback)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Feedback $feedback)
     {
-        //
+        if (auth()->user()->id != $feedback->user_id && auth()->user()->role != 'admin') {
+            return redirect()->route('games.index')->with('error', 'Access denied.');
+        }
+        return view('feedbacks.edit', compact('feedback'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Feedback $feedback)
     {
-        //
+        $feedback->update($request->only(['rating', 'feedback']));
+        return redirect()->route('games.show', $feedback->game_id)
+                         ->with('success', 'Feedback updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Feedback $feedback)
     {
         //

@@ -28,13 +28,33 @@
         @else
             <ul class="mt-4 space-y-4 h-60 overflow-y-auto">
                 @foreach($game->feedbacks as $feedback)
-                    <li class="bg-gray-100 p-4 rounded-lg shadow-lg">
-                        <p class="font-semibold">
-                            {{ $feedback->user->name }} 
-                            ({{ $feedback->created_at->format('M d, Y') }})
-                        </p>
-                        <p>Rating: {{ $feedback->rating }} / 5</p>
-                        <p>{{ $feedback->feedback }}</p>
+                    <li class="bg-gray-100 p-4 rounded-lg shadow-lg flex justify-between">
+
+                        <div>
+                            <p class="font-semibold">
+                                {{ $feedback->user->name }} 
+                                ({{ $feedback->created_at->format('M d, Y') }})
+                            </p>
+                            <p>Rating: {{ $feedback->rating }} / 5</p>
+                            <p>{{ $feedback->feedback }}</p>
+                        </div>
+                        <div class="flex flex-col space-y-1">
+                            @if ($feedback->user->is(auth()->user()) || auth()->user()->role === 'admin')
+
+                                <a href="{{ route('feedbacks.edit', $feedback) }}" class="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-1 px-4 rounded">
+                                    {{ __('EDIT FEEDBACK') }}
+                                </a>
+                            
+                                <form method="POST" action="{{ route('feedbacks.destroy', $feedback) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <x-danger-button :href="route('feedbacks.destroy', $feedback)"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                        {{ __('Delete Feedback') }}
+                                    </x-danger-button>
+                                </form>
+                            @endif
+                        </div>
                     </li>
                 @endforeach
             </ul>
@@ -44,7 +64,6 @@
             <h4 class="font-semibold text-md mt-8">Add a Feedback</h4>
             <form action="{{ route('feedbacks.store', $game) }}" method="POST" class="mt-4">
                 @csrf
-
                 <div class="mb-4">
                     <label for="rating" class="block font-medium text-sm text-gray-700">Rating</label>
                     <select name="rating" id="rating" class="mt-1 block w-full" required>

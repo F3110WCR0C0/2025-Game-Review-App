@@ -1,11 +1,12 @@
-<?php
+<!-- <?php
 
 namespace Database\Seeders;
 
+use App\Models\Developer;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends seeder{
+class DatabaseSeeder extends Seeder{
     public function run(): void{
         $this->call(GameSeeder::class);
     }
@@ -94,6 +95,16 @@ class GameSeeder extends Seeder{
                 'discount'=> 0.20,
                 'image'=> 'Stardew_Valley.jpg'
             ]
-        ]);
+            ]);
+
+        foreach ($games as $gameData) {
+            $game = Game::create(array_merge($gameData, [
+                'created_at' => $currentTimestamp,
+                'updated_at' => $currentTimestamp
+            ]));
+
+            $developers = Developer::inRandomOrder()->take(2)->pluck('id');
+            $game->developers()->attach($developers);
+        }
     }
 }
