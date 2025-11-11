@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('release_date');
+            $table->mediumText('description');
             $table->unsignedBigInteger('age_rating');
             $table->decimal('price');
             $table->decimal('discount');

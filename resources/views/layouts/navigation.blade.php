@@ -19,10 +19,20 @@
                         {{__('View All Games')}}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('developers.index')" :activate="request()->routeIs('developers.index')">
+                        {{__('View All Developers')}}
+                    </x-nav-link>
+
                     <!-- the create link only appears for admin users --> 
                     @if(auth()->user()->role === 'admin')
                         <x-nav-link :href="route('games.create')" :active="request()->routeIs ('games.create')"> 
                             {{ _('Create New Games') }} 
+                        </x-nav-link>
+                    @endif
+
+                    @if(auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('developers.create')" :active="request()->routeIs ('developers.create')"> 
+                            {{ _('Create New Developers') }} 
                         </x-nav-link>
                     @endif
                 </div>

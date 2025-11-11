@@ -40,7 +40,7 @@
         @enderror
     </div>
 
-        <div class="mb-4">
+    <div class="mb-4">
         <label for="release_date" class="block text-sm text-gray-700">Release_date</label>
         <input
             type="date"
@@ -54,6 +54,29 @@
             <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
+
+
+
+
+    <div class="mb-4">
+        <label for="description" class="block text-sm text-gray-700">Description</label>
+        <input
+            type="date"
+            name="description"
+            id="description"
+            value="{{ old('description', $game->description ?? ' ') }}"
+            required
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        />
+        @error('description')
+            <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+
+
+
+
 
     <div class="mb-4">
         <label for="age_rating" class="block text-sm text-gray-700">Age_rating</label>

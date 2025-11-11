@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +34,8 @@ Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.
 
 // route::resource('feedbacks', FeedbackController::class);
 Route::resource('feedbacks', FeedbackController::class)->except(['store']);
-route::post('games/{game}/feedbacks', [FeedbackController::class, 'store'])->name('feedbacks.store');
+Route::post('games/{game}/feedbacks', [FeedbackController::class, 'store'])->name('feedbacks.store');
 
-
+Route::resource('developers', DeveloperController::class)->middleware('auth');
 
 require __DIR__.'/auth.php';

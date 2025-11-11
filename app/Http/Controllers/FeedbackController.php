@@ -59,6 +59,11 @@ class FeedbackController extends Controller
 
     public function destroy(Feedback $feedback)
     {
-        //
+        $feedback->delete();
+ 
+        // sends user to the games index page
+        return redirect()
+            ->route('games.index')
+            ->with('success', 'Feedback deleted successfully!');
     }
 }

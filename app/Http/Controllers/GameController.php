@@ -40,7 +40,8 @@ class GameController extends Controller
             'age_rating'=> 'required|integer',
             'price'=> 'required|decimal:2',
             'discount'=> 'required|decimal:2',
-            'image'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description'=> 'required'
         ]);
 
         // Ensureing the file has an image
@@ -57,6 +58,7 @@ class GameController extends Controller
             'price'=> $request->price,
             'discount'=> $request->discount,
             'image'=> $imageName,
+            'description'=> $request->description,
             // the now() sets the data to the current time
             'updated_at'=> now(),
             'created_at'=> now()
@@ -95,6 +97,7 @@ class GameController extends Controller
         $request->validate([
             'name'=> 'required',
             'release_date'=> 'required|date',
+            'description'=> 'required',
             'age_rating'=> 'required|integer',
             'price'=> 'required|decimal:2',
             'discount'=> 'required|decimal:2',
@@ -113,6 +116,7 @@ class GameController extends Controller
         // Update the Fields
         $game->name = $request->name;
         $game->release_date = $request->release_date;
+        $game->description = $request->description;
         $game->age_rating = $request->age_rating;
         $game->price = $request->price;
         $game->discount = $request->discount;

@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head><title>Games</title></head>
+<head><title>Developers</title></head>
 <body>
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __("Game Details") }}
+                {{ __("Developer Details") }}
             </h2>
         </x-slot>
 
-            <x-game-details 
-                :name="$game->name" 
-                :release_date="$game->release_date" 
-                :description="$game->description"
-                :image="$game->image" 
-                :age_rating="$game->age_rating"
-                :price="$game->price"
-                :discount="$game->discount"
+            <x-developer-details 
+                :first_name="$developer->first_name"
+                :last_name="$developer->last_name" 
+                :company="$developer->company"
+
             />
 
         <div class=" absolute inset-x-0 bottom-0 border rounded-lg shadow-md p-6 bg-white hover:shadow-lg transition duration-300">
 
-            @if($game->feedbacks->isEmpty())
+            @if($developer->feedbacks->isEmpty())
                 <p class="text-gray-600 p-2 ">No feedbacks yet</p>
             @else
                 <ul class="mt-4 space-y-4 h-60 overflow-y-auto">
-                    @foreach($game->feedbacks as $feedback)
+                    @foreach($developer->feedbacks as $feedback)
                         <li class="bg-gray-100 p-4 rounded-lg shadow-lg flex justify-between">
 
                             <div>
@@ -60,7 +57,7 @@
 
             <div class="shadow-md p-2 ">
                 <h4 class="font-semibold text-md mt-8">Add a Feedback</h4>
-                <form action="{{ route('feedbacks.store', $game) }}" method="POST" class="mt-4">
+                <form action="{{ route('feedbacks.store', $developer) }}" method="POST" class="mt-4">
                     @csrf
                     <div class="mb-4">
                         <label for="rating" class="block font-medium text-sm text-gray-700">Rating</label>
