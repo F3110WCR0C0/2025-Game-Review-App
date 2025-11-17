@@ -34,7 +34,7 @@ class FeedbackController extends Controller
             'hours_played' => $request->hours_played ?? 0,
         ]);
 
-        return redirect()->route('games.index', $game)->with('success', 'Feedback submitted!');
+        return redirect()->route('games.show', $game)->with('success', 'Feedback submitted!');
     }
 
     public function show(Feedback $feedback)
@@ -59,11 +59,10 @@ class FeedbackController extends Controller
 
     public function destroy(Feedback $feedback)
     {
+        $game = $feedback->game; // Get the associated game
         $feedback->delete();
- 
-        // sends user to the games index page
-        return redirect()
-            ->route('games.index')
-            ->with('success', 'Feedback deleted successfully!');
+    
+        return redirect()->route('games.show', $game)
+                         ->with('success', 'Feedback deleted successfully!');
     }
 }

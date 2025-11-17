@@ -1,25 +1,20 @@
-@props(['name', 'release_date', 'description', 'age_rating', 'price', 'discount', 'image'])
+@props(['first_name', 'last_name', 'company', ])
 
 <div class="border flex rounded-lg shadow-md p-6 bg-white hover:shadow-lg transition duration-300 my-10 ">
-    <div>
-        <img src="{{ asset('images/games/' . $image) }}" alt="{{ $name }}">
-    </div>
-    <div class="px-10">
-        <h1 class="font-bold text-lg">{{ $name }}</h1>
-        <p class="font-bold text-lg">Release Date: <span class="text-slate-600">{{ $release_date }}</span></p>
-        <p class="font-bold text-lg">Age Rating: <span class="text-slate-600">{{ $age_rating }}</span></p>
-        <p class="font-bold text-lg max-w-50">Description: <span class="text-slate-600">{{ $description }}</span></p>
-        <p class="font-bold text-lg">
-            Price: <strike><span class="text-slate-600">${{ $price }}</span></strike>
-            {{ $discount * 100 }}%
-        </p>
-        <p class="font-bold text-lg">Discounted: ${{ number_format($price * (1 - $discount), 2) }}</p>
-        <button class="font-bold text-lg bg-green-500 border-2 hover:bg-green-400 hover:shadow-sm rounded p-1">
-            <p>Buy now</p>
-        </button>
-    </div>
 
+    <div class="px-10 flex">
+        <div class="relative inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full dark:bg-gray-600 mr-5">
+            <span class="font-medium text-gray-600 dark:text-gray-300">{{ strtoupper(substr($first_name, 0, 1) . substr($last_name, 0, 1)) }}</span>
+        </div>
+
+        <div class="flex flex-col">
+            <h1 class="font-bold text-lg">{{ $first_name }}</h1>
+            <h1 class="font-bold text-lg">{{ $last_name }}</h1>
+            <p class="font-bold text-lg">Company: <span class="text-slate-600">{{ $company }}</span></p>
+        </div>
+
+
+    </div>
 
 </div>
 
-{{-- this is what you see when you click on a game in the view all games section with extra details and all the data being drawn from the data base thanks to the migration making the table and columns and the seeder filling in the data needed --}}

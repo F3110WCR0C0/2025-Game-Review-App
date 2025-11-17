@@ -9,6 +9,7 @@
             </h2>
         </x-slot>
 
+        <div class="max-w-7xl mx-auto mt-6">
             <x-game-details 
                 :name="$game->name" 
                 :release_date="$game->release_date" 
@@ -18,6 +19,7 @@
                 :price="$game->price"
                 :discount="$game->discount"
             />
+        </div>
 
         <div class=" absolute inset-x-0 bottom-0 border rounded-lg shadow-md p-6 bg-white hover:shadow-lg transition duration-300">
 

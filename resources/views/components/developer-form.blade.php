@@ -1,4 +1,4 @@
-@props(['action', 'method', 'developer'])
+@props(['action', 'method', 'developer' => null, 'games' => []])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -23,7 +23,7 @@
         @enderror
     </div>
 
-        <div class="mb-4">
+    <div class="mb-4">
         <label for="last_name" class="block text-sm text-gray-700">Last Name</label>
         <input
             type="text"
@@ -38,7 +38,7 @@
         @enderror
     </div>
 
-        <div class="mb-4">
+    <div class="mb-4">
         <label for="company" class="block text-sm text-gray-700">Company</label>
         <input
             type="text"
@@ -53,6 +53,27 @@
         @enderror
     </div>
 
+
+    <div class="mb-4">
+        <label for="games[]" class="block text-sm text-gray-700">Games</label>
+        <div class="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto border rounded-md p-2">
+            @foreach($games as $game)
+                <label class="inline-flex items-center space-x-2">
+                    <input 
+                        type="checkbox" 
+                        name="games[]" 
+                        value="{{ $game->id }}"
+                        {{ (isset($developer) && $developer->games->contains($game->id)) ? 'checked' : '' }}
+                        class="form-checkbox h-5 w-5 text-indigo-600"
+                    >
+                    <span>{{ $game->name }}</span>
+                </label>
+            @endforeach
+        </div>
+        @error('games')
+            <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
 
 
 {{-- /////////////////////////////////////////////////////////////// --}}

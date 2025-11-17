@@ -74,10 +74,6 @@
     </div>
 
 
-
-
-
-
     <div class="mb-4">
         <label for="age_rating" class="block text-sm text-gray-700">Age_rating</label>
         <input

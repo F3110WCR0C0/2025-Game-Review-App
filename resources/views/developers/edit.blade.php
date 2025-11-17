@@ -15,6 +15,7 @@
                         :action="route('developers.update', $developer)"
                         :method="'PUT'"
                         :developer="$developer"
+                        :games="$games" 
                     />
                 </div>
             </div>

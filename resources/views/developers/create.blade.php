@@ -17,6 +17,8 @@
                         <x-developer-form
                             :action="route('developers.store')"
                             :method="'POST'"
+                            :games="$games"
+
                         />
                     </div>
                 </div>
