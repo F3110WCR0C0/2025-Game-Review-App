@@ -1,10 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Developer;
-use Illuminate\Http\Request;
 
 class DeveloperController extends Controller
 {
@@ -26,20 +26,27 @@ class DeveloperController extends Controller
 
     public function store(Request $request)
     {
-        // Store validated data in $validated
         $validated = $request->validate([
             'first_name'=> 'required',
             'last_name'=> 'required',
             'company'=> 'required',
+            'bio' => 'required',
+            'image'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/developers'), $imageName);
+            $validated['image'] = $imageName;
+        }
 
         $developer = Developer::create($validated);
 
         if ($request->has('games')) {
-            $developer->games()->attach($request->games);
+            $developer->games()->sync($request->games);
         }
 
-        return to_route('developers.index')->with('success', 'Developer created successfully!');
+        return redirect()->route('developers.index')->with('success', 'Developer created successfully!');
     }
 
     public function show(Developer $developer)
@@ -60,21 +67,31 @@ class DeveloperController extends Controller
             'first_name'=> 'required',
             'last_name'=> 'required',
             'company'=> 'required',
+            'bio' => 'required',
+            'image'=> 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // optional on update
         ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/developers'), $imageName);
+            $validated['image'] = $imageName;
+        }
 
         $developer->update($validated);
 
-        if ($request->has('games')) {
-            $developer->games()->sync($request->games);
-        }
+        $developer->games()->sync($request->games ?? []);
 
         return redirect()->route('developers.index')->with('success', 'Developer updated successfully!');
     }
 
     public function destroy(Developer $developer)
     {
+        if ($developer->image && file_exists(public_path('images/developers/' . $developer->image))) {
+            unlink(public_path('images/developers/' . $developer->image));
+        }
+
         $developer->games()->detach();
-        $developer->delete(); 
+        $developer->delete();
 
         return redirect()->route('developers.index')->with('success', 'Developer deleted successfully!');
     }

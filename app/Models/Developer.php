@@ -14,6 +14,8 @@ class Developer extends Model
         'first_name',         
         'last_name', 
         'company',
+        'bio',
+        'image'
     ];
 
     public function games()

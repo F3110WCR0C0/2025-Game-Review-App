@@ -9,11 +9,13 @@
             </h2>
         </x-slot>
 
-        <div class="max-w-xl mx-auto mt-6">
+        <div class="max-w-7xl mx-auto mt-6">
             <x-developer-details 
                 :first_name="$developer->first_name"
                 :last_name="$developer->last_name" 
                 :company="$developer->company"
+                :bio="$developer->bio"
+                :image="$developer->image"
 
             />
         </div>

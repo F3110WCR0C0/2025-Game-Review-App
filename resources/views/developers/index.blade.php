@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight flex items-center justify-between">
@@ -23,6 +24,8 @@
                                         :first_name="$developer->first_name" 
                                         :last_name="$developer->last_name"
                                         :company="$developer->company" 
+                                        :bio="$developer->bio"
+                                        :image="$developer->image"
                                     />
                                 </a>
                                     @if(auth()->user()->role === 'admin')
@@ -49,3 +52,4 @@
 </x-app-layout>
 
 {{-- This is the main page that people see where you can access every other page in x-developer-card we see the file pulling all the data in the data base --}}
+
