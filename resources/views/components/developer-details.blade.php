@@ -9,8 +9,7 @@
         class="h-64 w-64 object-cover rounded-md"
     />
         <div class="flex flex-col px-2">
-            <h1 class="font-bold text-lg">{{ $first_name }}</h1>
-            <h1 class="font-bold text-lg">{{ $last_name }}</h1>
+            <h1 class="font-bold text-lg">{{ $first_name }} {{ $last_name }}</h1>
             <p class="font-bold text-lg">Company: <span class="text-slate-600">{{ $company }}</span></p>
             <p class="font-bold text-lg">Bio: <span class="text-slate-600">{{ $bio }}</span></p>
         </div>

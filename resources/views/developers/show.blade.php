@@ -21,8 +21,8 @@
         </div>
 
 
-        <div class="absolute inset-x-0 bottom-0 border rounded-lg shadow-md p-6 bg-white hover:shadow-lg transition duration-300">
-            <div class="inset-x-0 bottom-0 grid grid-cols-3 gap-4 mt-10">
+        <div class="absolute inset-x-0 bottom-0 border rounded-lg shadow-md p-6 bg-white hover:shadow-lg transition duration-300 ">
+            <div class="inset-x-0 bottom-0 grid grid-cols-3 gap-4 my-5 max-h-[1050px] overflow-auto">
                 @foreach($developer->games as $game)
                 <a href="{{ route('games.show', $game) }}">
                     <div class="border rounded-lg shadow-md p-2 bg-white hover:shadow-lg transition duration-300">
