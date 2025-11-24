@@ -3,9 +3,11 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight flex items-center justify-between">
             {{ __('List of Developers') }}
-            <x-nav-link>
-                <input type="text" placeholder="searchbar">
-            </x-nav-link>
+            <form class="flex" method="GET" action="{{ route('developers.index') }}" class="mb-4">
+                <input type="text" name="search" value="{{ request('search') }}" 
+                       placeholder="Search developers..." class="border rounded px-2 py-1 w-full">
+                <button type="submit" class="ml-2 bg-blue-500 text-white px-4 py-1 rounded">Search</button>
+            </form>
         </h2>
         <x-alert-success>
             successful!

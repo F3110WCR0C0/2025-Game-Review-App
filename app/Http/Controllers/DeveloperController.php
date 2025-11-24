@@ -8,9 +8,18 @@ use App\Models\Developer;
 
 class DeveloperController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $developers = Developer::with('games')->get();
+        $query = Developer::with('games');
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('first_name', 'like', "%{$search}%")
+                  ->orWhere('last_name', 'like', "%{$search}%");
+        }
+
+        $developers = $query->get();
+
         return view('developers.index', compact('developers'));
     }
 

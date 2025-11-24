@@ -11,11 +11,19 @@ class GameController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $games = Game::all();
+        $query = Game::query();
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('name', 'like', "%{$search}%");
+        }
+        $games = $query->get();
+
         return view('games.index', compact('games'));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Show the form for creating a new resource.
