@@ -33,8 +33,11 @@ class GameController extends Controller
         if (auth()->user()->role !== 'admin'){
             return redirect()->route('games.index')->with('error','Access denied.');
         }
-        
-        return view('games.create');
+
+        // Get all developers
+        $developers = \App\Models\Developer::all();
+
+        return view('games.create', compact('developers'));
     }
 
     /**
@@ -58,8 +61,7 @@ class GameController extends Controller
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images/games'), $imageName);
         }
-        Game::create([
-            // creating a database with these cplumns
+        $game = Game::create([
             'name'=> $request->name,
             'release_date'=> $request->release_date,
             'age_rating'=> $request->age_rating,
@@ -67,10 +69,14 @@ class GameController extends Controller
             'discount'=> $request->discount,
             'image'=> $imageName,
             'description'=> $request->description,
-            // the now() sets the data to the current time
             'updated_at'=> now(),
             'created_at'=> now()
-        ]);  
+        ]);
+
+        // Sync developers if any are selected
+        if ($request->has('developers')) {
+            $game->developers()->sync($request->developers);
+        }
 
 
         // After storing the data the web application sends you to the game index
@@ -81,7 +87,7 @@ class GameController extends Controller
     public function show(Game $game)
     {
         // Might need to change location to FeedbackController
-        $game->load('feedbacks.user');
+        $game->load('feedbacks.user', 'developers');
         // brings you to game show
         return view('games.show', compact('game'));
     }
@@ -91,8 +97,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        // brings you to games edit
-        return view('games.edit', compact('game'));
+        $developers = \App\Models\Developer::all(); // <-- add this
+        return view('games.edit', compact('game', 'developers'));
     }
 
     /**
@@ -101,7 +107,6 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        // validates all data given when updating a game
         $request->validate([
             'name'=> 'required',
             'release_date'=> 'required|date',
@@ -109,35 +114,33 @@ class GameController extends Controller
             'age_rating'=> 'required|integer',
             'price'=> 'required|decimal:2',
             'discount'=> 'required|decimal:2',
-            'image'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image'=> 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // nullable so you don't need to re-upload
         ]);
-
- 
+    
         // Handle image upload if provided
-        // images are handled differently to the other fields so this chunk of code ensures its all okay
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images/games'), $imageName);
             $game->image = $imageName;
         }
- 
-        // Update the Fields
+    
+        // Update fields
         $game->name = $request->name;
         $game->release_date = $request->release_date;
         $game->description = $request->description;
         $game->age_rating = $request->age_rating;
         $game->price = $request->price;
         $game->discount = $request->discount;
- 
-        // Save changes
+    
         $game->save();
- 
-        // sends the user to the games index with an alert success
+    
+        // Sync developers
+        $game->developers()->sync($request->developers ?? []); // ensures none are selected if empty
+    
         return redirect()
             ->route('games.index')
             ->with('success', 'Game updated successfully!');
-    }       
- 
+    }
     /**
      * Remove the specified resource from storage.
      */

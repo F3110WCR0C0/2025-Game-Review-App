@@ -7,6 +7,7 @@
                        placeholder="Search games..." class="border rounded px-2 py-1 w-full">
                 <button type="submit" class="ml-2 bg-blue-500 text-white px-4 py-1 rounded">Search</button>
             </form>
+
         </h2>
         <x-alert-success>
             successful!

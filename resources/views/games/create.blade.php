@@ -17,6 +17,8 @@
                         <x-game-form
                             :action="route('games.store')"
                             :method="'POST'"
+                            :developers="$developers"
+
                         />
                     </div>
                 </div>

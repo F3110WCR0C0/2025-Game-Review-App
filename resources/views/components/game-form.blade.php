@@ -1,4 +1,4 @@
-@props(['action', 'method', 'game'])
+@props(['action', 'method', 'game' => null, 'developers' => []])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -121,7 +121,28 @@
         @error('discount')
             <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
+    </div>
 
+
+        <div class="mb-4">
+        <label class="block text-sm text-gray-700">Developers</label>
+        <div class="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto border rounded-md p-2">
+            @foreach($developers as $developer)
+                <label class="inline-flex items-center space-x-2">
+                    <input 
+                        type="checkbox" 
+                        name="developers[]" 
+                        value="{{ $developer->id }}"
+                        {{ (isset($game) && $game->developers->contains($developer->id)) ? 'checked' : '' }}
+                        class="form-checkbox h-5 w-5 text-indigo-600"
+                    >
+                    <span>{{ $developer->first_name }} {{ $developer->last_name }}</span>
+                </label>
+            @endforeach
+        </div>
+        @error('developers')
+            <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
     </div>
 
 {{-- /////////////////////////////////////////////////////////////// --}}
