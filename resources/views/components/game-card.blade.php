@@ -5,4 +5,3 @@
     <img src="{{ asset('images/games/' . $image) }}" alt="{{ $name }}">
 </div>
 
-{{-- this is what you see when you see all the games just the title being drawn fron the database and an image  --}}

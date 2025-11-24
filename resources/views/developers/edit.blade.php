@@ -9,8 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-
-                    {{-- Using the DeveloperForm component for developer creation --}}
                     <x-developer-form
                         :action="route('developers.update', $developer)"
                         :method="'PUT'"
@@ -24,4 +22,3 @@
 </x-app-layout>
 
 
-{{-- this is the page people are brought to edit a developer with the x-developer-form having a post method to store data --}}

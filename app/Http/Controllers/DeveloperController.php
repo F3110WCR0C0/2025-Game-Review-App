@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\Developer;
@@ -23,6 +21,8 @@ class DeveloperController extends Controller
         return view('developers.index', compact('developers'));
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     public function create()
     {
         if (auth()->user()->role !== 'admin') {
@@ -32,6 +32,8 @@ class DeveloperController extends Controller
         $games = Game::all();
         return view('developers.create', compact('games'));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public function store(Request $request)
     {
@@ -58,10 +60,14 @@ class DeveloperController extends Controller
         return redirect()->route('developers.index')->with('success', 'Developer created successfully!');
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     public function show(Developer $developer)
     {
         return view('developers.show', compact('developer'));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public function edit(Developer $developer)
     {
@@ -69,6 +75,8 @@ class DeveloperController extends Controller
         $developerGames = $developer->games->pluck('id')->toArray();
         return view('developers.edit', compact('developer','games','developerGames'));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public function update(Request $request, Developer $developer)
     {
@@ -92,6 +100,8 @@ class DeveloperController extends Controller
 
         return redirect()->route('developers.index')->with('success', 'Developer updated successfully!');
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public function destroy(Developer $developer)
     {

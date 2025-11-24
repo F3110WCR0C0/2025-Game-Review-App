@@ -9,8 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-
-                    {{-- Using the GameForm component for game creation --}}
                     <x-game-form
                         :action="route('games.update', $game)"
                         :method="'PUT'"
@@ -25,4 +23,3 @@
 </x-app-layout>
 
 
-{{-- this is the page people are brought to edit a game with the x-game-form having a post method to store data --}}

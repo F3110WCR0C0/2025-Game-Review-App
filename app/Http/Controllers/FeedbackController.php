@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Feedback;
 use App\Models\Game;
 use Illuminate\Http\Request;
@@ -10,14 +8,16 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        //
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public function create()
     {
-        //
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+    
     public function store(Request $request, Game $game)
     {
         $request->validate([
@@ -37,10 +37,13 @@ class FeedbackController extends Controller
         return redirect()->route('games.show', $game)->with('success', 'Feedback submitted!');
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     public function show(Feedback $feedback)
     {
-        //
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     public function edit(Feedback $feedback)
     {
@@ -50,6 +53,8 @@ class FeedbackController extends Controller
         return view('feedbacks.edit', compact('feedback'));
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     public function update(Request $request, Feedback $feedback)
     {
         $feedback->update($request->only(['rating', 'feedback']));
@@ -57,9 +62,11 @@ class FeedbackController extends Controller
                          ->with('success', 'Feedback updated successfully.');
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     public function destroy(Feedback $feedback)
     {
-        $game = $feedback->game; // Get the associated game
+        $game = $feedback->game; 
         $feedback->delete();
     
         return redirect()->route('games.show', $game)

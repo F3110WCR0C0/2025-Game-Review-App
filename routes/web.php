@@ -5,7 +5,6 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\GameController;
-use App\Models\Feedback;
 
 Route::get('/', function () {
     return view('welcome');

@@ -7,7 +7,6 @@
         @method($method)
     @endif
 
-{{-- /////////////////////////////////////////////////////////////////// --}}
     <div class="mb-4">
         <label for="name" class="block text-sm text-gray-700">Name</label>
         <input
@@ -22,6 +21,8 @@
             <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
+
+    
 
     <div class="mb-4">
         <label for="image" class="block text-sm font-medium text-gray-700">Game Cover Image</label>
@@ -55,9 +56,6 @@
         @enderror
     </div>
 
-
-
-
     <div class="mb-4">
         <label for="description" class="block text-sm text-gray-700">Description</label>
         <input
@@ -77,7 +75,6 @@
     <div class="mb-4">
         <label for="age_rating" class="block text-sm text-gray-700">Age_rating</label>
         <input
-        {{-- Possibly edit text to some sort of int --}}
             type="text"
             name="age_rating"
             id="age_rating"
@@ -94,7 +91,6 @@
     <div class="mb-4">
         <label for="price" class="block text-sm text-gray-700">Price</label>
         <input
-        {{-- Possibly edit text to some sort of int --}}
             type="text"
             name="price"
             id="price"
@@ -110,7 +106,6 @@
     <div class="mb-4">
         <label for="discount" class="block text-sm text-gray-700">Discount</label>
         <input
-        {{-- Possibly edit text to some sort of decimal --}}
             type="text"
             name="discount"
             id="discount"
@@ -145,9 +140,6 @@
         @enderror
     </div>
 
-{{-- /////////////////////////////////////////////////////////////// --}}
-
-
     <div>
         <x-primary-button>
             {{ isset($game) ? 'Update Game' : 'Add Game' }}
@@ -156,4 +148,3 @@
 </form>
 
 
-{{-- this is the file that holds the form it ensure that the data being entered is the correct variable type and it displays the form page when pressing edit and create --}}

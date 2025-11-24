@@ -25,7 +25,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight ">Developers:</h2>
             <div class="flex  gap-4 my-5 overflow-auto">
                 @foreach($game->developers as $developer)
-                <a href="{{ route('developers.show', $developer) }}">
+                <a class="hover:shadow-lg" href="{{ route('developers.show', $developer) }}">
                     <div class="border rounded-lg shadow-md p-2 bg-white hover:shadow-lg transition duration-300 flex flex-col items-center">
                         <div class="w-48 h-48 overflow-hidden rounded-md">
                             <img class="w-full h-full object-cover" src="{{ asset('images/developers/' . $developer->image) }}" alt="{{ $developer->first_name }}">
@@ -36,7 +36,6 @@
                 @endforeach
             </div>
         </div>
-
 
         <div class=" absolute inset-x-0 bottom-0 border rounded-lg shadow-md p-6 bg-white hover:shadow-lg transition duration-300">
             @if($game->feedbacks->isEmpty())

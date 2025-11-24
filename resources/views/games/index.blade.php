@@ -54,5 +54,3 @@
         </div>
     </div>
 </x-app-layout>
-
-{{-- This is the main page that people see where you can access every other page in x-game-card we see the file pulling all the data in the data base --}}

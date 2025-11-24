@@ -28,6 +28,3 @@
 </x-app-layout>
 </body>
 </html>
-
-
-{{-- this is the page people are brought to create a developer with the x-developer-form having a post method to store data --}}

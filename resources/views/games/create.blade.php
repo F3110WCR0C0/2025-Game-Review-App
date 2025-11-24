@@ -28,6 +28,3 @@
 </x-app-layout>
 </body>
 </html>
-
-
-{{-- this is the page people are brought to create a game with the x-game-form having a post method to store data --}}

@@ -13,7 +13,6 @@ class GameSeeder extends Seeder
     {
         $currentTimestamp = Carbon::now();
 
-        // Define the games array
         $games = [
             [
                 'name'=> 'Monster Hunter: World',
@@ -89,12 +88,10 @@ class GameSeeder extends Seeder
             ]
         ];
 
-        // Insert all games at once
         Game::insert($games);
 
-        // Attach developers to each game
         foreach ($games as $gameData) {
-            $game = Game::where('name', $gameData['name'])->first(); // fetch the already inserted game
+            $game = Game::where('name', $gameData['name'])->first(); 
             if ($game) {
                 $developers = Developer::inRandomOrder()->take(2)->pluck('id');
                 $game->developers()->attach($developers);
